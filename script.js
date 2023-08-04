@@ -1,19 +1,20 @@
 let APIKey = "6f3fae3674ae2776180feb26321732b6";
-
-
-fetch("http://api.openweathermap.org/geo/1.0/direct?q=cityname&limit=5&appid=6f3fae3674ae2776180feb26321732b6")
+let queriedCity = "Pittsburgh";
+//event listener. 
+// pull out the string from the new button. use event delegation. event.target.textContent?
+fetch(`http://api.openweathermap.org/data/2.5/weather?q=${queriedCity}&limit=5&appid=6f3fae3674ae2776180feb26321732b6`)
     .then(response => response.json())
-    .then(citiesFound => {
-        let firstCity = citiesFound[0];
-        console.log(citiesFound);
-        console.log(firstCity.lat);
-        console.log(firstCity.lon);
+    .then(cityInfo => {
+        // let firstCity = citiesFound[0];
+        console.log(cityInfo);
+        console.log(cityInfo.coord.lat);
+        console.log(cityInfo.coord.lon);
 
-        return fetch("https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=6f3fae3674ae2776180feb26321732b6")
+        return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${cityInfo.coord.lat}&lon=${cityInfo.coord.lon}&appid=6f3fae3674ae2776180feb26321732b6`)
     })
 
     .then(response => response.json())
-    .then(data => {
+    .then(cityData => {
 
-        console.log(data);
+        console.log(cityData);
     })
