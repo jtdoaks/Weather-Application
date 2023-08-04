@@ -30,9 +30,22 @@ function getWeather(queriedCity) {
     
             let temp = document.createElement("p");
             temp.setAttribute("class", "card-text");
-            temp.textContent= `Temperature: ${cityInfo.main.temp}F`
-            cardBody.append(cityName, temp);
+            temp.textContent= `Temperature: ${cityInfo.main.temp} F`;
+
+            let wind = document.createElement("p");
+            wind.setAttribute("class", "card-text");
+            wind.textContent = `Wind: ${cityInfo.wind.speed} mph`;
+
+            let humidity = document.createElement("p");
+            humidity.setAttribute("class", "card-text");
+            humidity.textContent = `Humidity: ${cityInfo.main.humidity} %`;
+
+
+            cardBody.append(cityName, temp, wind, humidity);
             newDiv.append(cardBody);
+
+
+
             document.querySelector(".currentWeather").innerHTML = "";
             document.querySelector(".currentWeather").append(newDiv);
     
