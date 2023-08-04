@@ -57,6 +57,7 @@ function getWeather(queriedCity) {
         .then(cityData => {
     
             console.log(cityData);
+            saveCity(cityData.city.name);
             for (let i = 0; i < cityData.list.length; i++) {
                 if (cityData.list[i].dt_txt.includes("12:00:00")) {
                     console.log(cityData.list[i]);
@@ -68,4 +69,23 @@ function getWeather(queriedCity) {
 }
 
 
+function saveCity(citiesName) {
+    let pastSearches = JSON.parse(localStorage.getItem("pastCities")) || [];
+    if (!pastSearches.includes(citiesName)) {
+        pastSearches.push(citiesName)
+        localStorage.setItem("pastCities", JSON.stringify(pastSearches))
+    }
+}
 
+
+function displayPastButtons() {
+    let pastSearches = JSON.parse(localStorage.getItem("pastCities")) || [];  
+    for (let i = 0; i < pastSearches.length; i++) {
+        let newButton = document.createElement("button");
+        newButton.textContent = pastSearches[i];
+        document.querySelector("#searchBox").append(newButton);
+        
+    }
+}
+
+displayPastButtons();
