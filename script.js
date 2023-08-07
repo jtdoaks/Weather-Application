@@ -109,6 +109,7 @@ function displayFive(queriedCity) {
     .then (weather => {
         for (let i = 7; i < weather.list.length; i=i+8) {
             console.log(weather.list[i]);
+            let dayData = weather.list[i];
 
             let days = document.createElement("div");
                             days.setAttribute("class", "card");
@@ -118,11 +119,11 @@ function displayFive(queriedCity) {
                             
                             let date = document.createElement("div");
                             date.setAttribute("class", "card");
-                            date.textContent = dayjs().format("DD/MM/YYYY")
+                            date.textContent = dayjs(dayData.dt * 1000).format("DD/MM/YYYY");
 
-                            let icon = document.createElement("p");
-                            icon.setAttribute("class", "card-text");
-                            icon.textContent =  {weather.list[i].weather.icon};
+                            // let icon = document.createElement("p");
+                            // icon.setAttribute("class", "card-text");
+                            // icon.textContent =  weather.list[i].weather.icon;
                             
                             let temp = document.createElement("p");
                             temp.setAttribute("class", "card-text");
