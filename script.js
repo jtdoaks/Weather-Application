@@ -12,7 +12,7 @@ document.querySelector("#search").addEventListener("click", function () {
 
 
 function getWeather(queriedCity) {
-
+    displayFive(queriedCity);
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${queriedCity}&limit=5&appid=6f3fae3674ae2776180feb26321732b6&units=imperial`)
         .then(response => response.json())
         .then(cityInfo => {
@@ -66,7 +66,8 @@ function getWeather(queriedCity) {
                 }
 
             }
-        })
+        }) 
+       
 }
 
 
@@ -102,130 +103,46 @@ displayPastButtons();
 
 
 
-function displayFive(event) {
-
-
-};
-
-//     let clickedCity = event.target;
-//     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${clickedCity}&limit=5&appid=6f3fae3674ae2776180feb26321732b6&units=imperial`)
-//         .then(response => response.json())
-//         .then(cityFive => {
-
-//             console.log(cityFive);
-
-//             let fiveDayF = JSON.parse(localStorage.getItem("cityFive")) || [];
-//             fiveDayF.push(cityFive);
-//             localStorage.setItem("cityFive", JSON.stringify(fiveDayF))
-//             console.log(fiveDayF);
-
-
-//             // document.querySelector("#fiveDay").innerHTML = "";
-
-
-//             for (let i = 0; fiveDayF.length; i++) {
-//                 // if (i > 3) break;
-
-//                 let days = document.createElement("div");
-//                 days.setAttribute("class", "card");
-
-//                 let cardBody = document.createElement("div");
-//                 cardBody.setAttribute("class", "card-body");
-
-//                 let date = document.createElement("div");
-//                 date.setAttribute("class", "card");
-//                 date.textContent = dayjs().format("DD/MM/YYYY")
-
-//                 let temp = document.createElement("p");
-//                 temp.setAttribute("class", "card-text");
-//                 temp.textContent = `Temperature: ${cityFive.main.temp} F`;
-
-//                 let wind = document.createElement("p");
-//                 wind.setAttribute("class", "card-text");
-//                 wind.textContent = `Wind: ${cityFive.wind.speed} mph`;
-
-//                 let humidity = document.createElement("p");
-//                 humidity.setAttribute("class", "card-text");
-//                 humidity.textContent = `Humidity: ${cityFive.main.humidity} %`;
-
-//                 cardBody.append(date, temp, wind, humidity);
-//                 newDiv.append(cardBody);
-
-//                 // document.querySelector("#fiveDay").append(days);
-
-//                 document.querySelector("#fiveDay").innerHTML = "";
-//                 document.querySelector("#fiveDay").append(days);
-
-
-//                 return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${cityFive.coord.lat}&lon=${cityFive.coord.lon}&appid=6f3fae3674ae2776180feb26321732b6&units=imperial`)
-
-//                     .then(response => response.json())
-//                     .then(cityCall => {
-
-//                         // console.log(cityData);
-//                         saveCity(cityCall.city.name);
-//                         for (let i = 0; i < cityCall.list.length; i++) {
-//                             if (cityCall.list[i].dt_txt.includes("12:00:00")) {
-//                                 // console.log(cityData.list[i]);
-
-//                             }
-
-//                         }
-//                     }
-//                     )
-//             }
-//         }
-//         )
-
-function handleCityClick(event) {
-    let clickedCity = event.target.textContent;
-
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${clickedCity}&appid=${APIKey}&units=imperial`)
-        .then(response => response.json())
-        .then(cityData => {
-console.log("working")
+function displayFive(queriedCity) {
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${queriedCity}&limit=5&appid=6f3fae3674ae2776180feb26321732b6&units=imperial`)
+    .then (response => response.json())
+    .then (weather => {
+        for (let i = 7; i < weather.list.length; i=i+8) {
+            console.log(weather.list[i]);
 
             let days = document.createElement("div");
-            days.setAttribute("class", "card");
+                            days.setAttribute("class", "card");
+                
+                            let cardBodyFive = document.createElement("div");
+                            cardBodyFive.setAttribute("class", "card-body");
+                            
+                            let date = document.createElement("div");
+                            date.setAttribute("class", "card");
+                            date.textContent = dayjs().format("DD/MM/YYYY")
 
-            let cardBodyFive = document.createElement("div");
-            cardBodyFive.setAttribute("class", "card-body");
+                            let icon = document.createElement("p");
+                            icon.setAttribute("class", "card-text");
+                            icon.textContent =  {weather.list[i].weather.icon};
+                            
+                            let temp = document.createElement("p");
+                            temp.setAttribute("class", "card-text");
+                            temp.textContent = `Temperature: ${weather.list[i].main.temp} F`;
+                            
+                            let wind = document.createElement("p");
+                            wind.setAttribute("class", "card-text");
+                            wind.textContent = `Wind: ${weather.list[i].wind.speed} mph`;
+                
+                            let humidity = document.createElement("p");
+                            humidity.setAttribute("class", "card-text");
+                            humidity.textContent = `Humidity: ${weather.list[i].main.humidity} %`;
+                            
+                            cardBodyFive.append(date, temp, wind, humidity);
+                            days.append(cardBodyFive);
+                            
+                            
+                            // document.querySelector(".fiveDay").innerHTML = "";
+                            document.querySelector(".fiveDay").append(days);
+        }
 
-            let date = document.createElement("div");
-            date.setAttribute("class", "card");
-            date.textContent = dayjs().format("DD/MM/YYYY")
-
-            let temp = document.createElement("p");
-            temp.setAttribute("class", "card-text");
-            temp.textContent = `Temperature: ${cityData.main.temp} F`;
-
-            let wind = document.createElement("p");
-            wind.setAttribute("class", "card-text");
-            wind.textContent = `Wind: ${cityData.wind.speed} mph`;
-
-            let humidity = document.createElement("p");
-            humidity.setAttribute("class", "card-text");
-            humidity.textContent = `Humidity: ${cityData.main.humidity} %`;
-
-            cardBodyFive.append(date, temp, wind, humidity);
-            days.append(cardBodyFive);
-
-
-            document.querySelector(".fiveDay").innerHTML = "";
-            document.querySelector(".fiveDay").append(days);
-
-
-
-
-
-
-          
-        })
-        
+    })
 }
-
-
-const cityElements = document.querySelectorAll('.cityButtons');
-cityElements.forEach(cityElement => {
-    cityElement.addEventListener('click', handleCityClick);
-});
