@@ -24,3 +24,8 @@ This is a web application that provides a 5-day weather forecast for a given cit
 - Displaying dynamic content on a web page using the DOM.
 - Formatting dates using the `dayjs` library.
 - Creating and styling elements dynamically using JavaScript and CSS.
+
+## Links
+ - GitHub - https://github.com/jtdoaks/Weather-Application
+ - Deployed Application - https://jtdoaks.github.io/Weather-Application/ 
+

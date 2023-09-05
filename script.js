@@ -30,6 +30,9 @@ function getWeather(queriedCity) {
             cityName.setAttribute("class", "card-title");
             cityName.textContent = cityInfo.name;
 
+            let image = document.createElement("img")
+            image.setAttribute("src", `https://openweathermap.org/img/wn/${cityInfo.weather[0].icon}.png`);
+
             let temp = document.createElement("p");
             temp.setAttribute("class", "card-text");
             temp.textContent = `Temperature: ${cityInfo.main.temp} F`;
@@ -43,7 +46,7 @@ function getWeather(queriedCity) {
             humidity.textContent = `Humidity: ${cityInfo.main.humidity} %`;
 
 
-            cardBody.append(cityName, temp, wind, humidity);
+            cardBody.append(cityName, image, temp, wind, humidity);
             newDiv.append(cardBody);
 
             document.querySelector(".currentWeather").innerHTML = "";
@@ -107,6 +110,7 @@ function displayFive(queriedCity) {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${queriedCity}&limit=5&appid=6f3fae3674ae2776180feb26321732b6&units=imperial`)
     .then (response => response.json())
     .then (weather => {
+         document.querySelector(".fiveDay").innerHTML = "";
         for (let i = 7; i < weather.list.length; i=i+8) {
             console.log(weather.list[i]);
             let dayData = weather.list[i];
@@ -121,9 +125,8 @@ function displayFive(queriedCity) {
                             date.setAttribute("class", "card");
                             date.textContent = dayjs(dayData.dt * 1000).format("DD/MM/YYYY");
 
-                            // let icon = document.createElement("p");
-                            // icon.setAttribute("class", "card-text");
-                            // icon.textContent =  weather.list[i].weather.icon;
+                            let image = document.createElement("img")
+                            image.setAttribute("src", `https://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}.png`);
                             
                             let temp = document.createElement("p");
                             temp.setAttribute("class", "card-text");
@@ -137,11 +140,11 @@ function displayFive(queriedCity) {
                             humidity.setAttribute("class", "card-text");
                             humidity.textContent = `Humidity: ${weather.list[i].main.humidity} %`;
                             
-                            cardBodyFive.append(date, temp, wind, humidity);
+                            cardBodyFive.append(date, image, temp, wind, humidity);
                             days.append(cardBodyFive);
                             
                             
-                            // document.querySelector(".fiveDay").innerHTML = "";
+                           
                             document.querySelector(".fiveDay").append(days);
         }
 
