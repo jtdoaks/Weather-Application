@@ -1,1 +1,88 @@
-/* search button display block? display flex? */
+/* 
+#ff6b35 orange
+#f7c59f light orange
+#efefd0 tan
+#004e89 blue
+#1a659e lighter blue */
+
+
+/* Resetting default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body styles */
+body {
+    background-color: #efefd0;
+    color: #004e89;
+}
+
+/* Header styles */
+header {
+    background-color: #ff6b35;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 2rem;
+}
+
+/* Main layout */
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Search box styles */
+input[type="text"],
+input[type="button"] {
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+}
+
+input[type="button"] {
+    background-color: #1a659e;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #004e89;
+}
+
+/* Weather display layout */
+.col-sm-12 {
+    margin: 10px;
+    padding: 15px;
+    background: #f7c59f;
+    border-radius: 8px;
+}
+
+/* Current weather and five-day forecast styles */
+.currentWeather,
+.fiveDay {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Card styles */
+.card {
+    margin: 10px;
+    padding: 10px;
+    background: #1a659e;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+}
