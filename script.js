@@ -1,11 +1,11 @@
 let APIKey = "6f3fae3674ae2776180feb26321732b6";
 
-document.querySelector("#search").addEventListener("click", function () {
+document.querySelector("#searchButton").addEventListener("click", function () {
     let city = document.querySelector("#cityBox").value;
     getWeather(city);
 });
 
-document.querySelector("#search").addEventListener("click", function () {
+document.querySelector("#searchButton").addEventListener("click", function () {
     let city = document.querySelector("#cityButtons");
     displayFive(city);
 });
@@ -85,7 +85,7 @@ function saveCity(citiesName) {
 
 function displayPastButtons() {
     let pastSearches = JSON.parse(localStorage.getItem("pastCities")) || [];
-    document.querySelector("#searchBox").innerHTML = "";
+    document.querySelector("#prevSearches").innerHTML = "";
 
     for (let i = 0; i < pastSearches.length; i++) {
         let newButton = document.createElement("button");
@@ -97,7 +97,7 @@ function displayPastButtons() {
             getWeather(searchedCity);
 
         })
-        document.querySelector("#searchBox").append(newButton);
+        document.querySelector("#prevSearches").append(newButton);
 
     }
 

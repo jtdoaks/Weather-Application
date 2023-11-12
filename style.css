@@ -15,13 +15,13 @@
 }
 
 /* Body styles */
-body {
+.body {
     background-color: #efefd0;
     color: #004e89;
 }
 
 /* Header styles */
-header {
+.header {
     background-color: #ff6b35;
     color: #fff;
     text-align: center;
@@ -30,32 +30,33 @@ header {
 }
 
 /* Main layout */
-main {
+.row {
     display: flex;
     justify-content: space-around;
     padding: 20px;
 }
 
 /* Search box styles */
-input[type="text"],
-input[type="button"] {
+#cityBox,
+#searchButton {
     padding: 10px;
     margin: 5px 0;
     border: none;
 }
 
-input[type="button"] {
+#searchButton {
     background-color: #1a659e;
-    color: #fff;
+    color: #efefd0;
     cursor: pointer;
 }
 
-input[type="button"]:hover {
+#searchButton:hover {
     background-color: #004e89;
 }
 
 /* Weather display layout */
-.col-sm-12 {
+.searchBox, 
+.weatherDisplay {
     margin: 10px;
     padding: 15px;
     background: #f7c59f;
@@ -75,7 +76,7 @@ input[type="button"]:hover {
     margin: 10px;
     padding: 10px;
     background: #1a659e;
-    color: #fff;
+    color: #efefd0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
