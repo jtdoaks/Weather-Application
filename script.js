@@ -3,12 +3,10 @@ let APIKey = "6f3fae3674ae2776180feb26321732b6";
 document.querySelector("#searchButton").addEventListener("click", function () {
     let city = document.querySelector("#cityBox").value;
     getWeather(city);
+    let cityFive = document.querySelector("#cityButtons");
+    displayFive(cityFive);
 });
 
-document.querySelector("#searchButton").addEventListener("click", function () {
-    let city = document.querySelector("#cityButtons");
-    displayFive(city);
-});
 
 
 function getWeather(queriedCity) {
@@ -28,26 +26,26 @@ function getWeather(queriedCity) {
 
             let cityName = document.createElement("h5");
             cityName.setAttribute("class", "card-title");
-            cityName.textContent = cityInfo.name;
+            cityName.textContent = `Right now in ${cityInfo.name}`;
 
             let image = document.createElement("img")
             image.setAttribute("src", `https://openweathermap.org/img/wn/${cityInfo.weather[0].icon}.png`);
 
             let temp = document.createElement("p");
             temp.setAttribute("class", "card-text");
-            temp.textContent = `Temperature: ${cityInfo.main.temp} F`;
+            temp.textContent = `Temperature: ${Math.round(cityInfo.main.temp)} °F`;
 
             let wind = document.createElement("p");
             wind.setAttribute("class", "card-text");
-            wind.textContent = `Wind: ${cityInfo.wind.speed} mph`;
+            wind.textContent = `Wind: ${Math.round(cityInfo.wind.speed)} mph`;
 
             let humidity = document.createElement("p");
             humidity.setAttribute("class", "card-text");
-            humidity.textContent = `Humidity: ${cityInfo.main.humidity} %`;
+            humidity.textContent = `Humidity: ${cityInfo.main.humidity}%`;
 
             let feelsLike = document.createElement("p");
-            humidity.setAttribute("class", "card-text");
-            humidity.textContent = `Feels Like: ${cityInfo.main.feels_like} F`;
+            feelsLike.setAttribute("class", "card-text");
+            feelsLike.textContent = `Feels Like: ${Math.round(cityInfo.main.feels_like)} °F`;
 
 
             cardBody.append(cityName, image, temp, wind, humidity, feelsLike);
@@ -118,6 +116,7 @@ function displayFive(queriedCity) {
         for (let i = 7; i < weather.list.length; i=i+8) {
             console.log(weather.list[i]);
             let dayData = weather.list[i];
+            const dayName = new Date(dayData.dt * 1000).toLocaleString('en-US', { weekday: 'long' });
 
             let days = document.createElement("div");
                             days.setAttribute("class", "card");
@@ -127,7 +126,7 @@ function displayFive(queriedCity) {
                             
                             let date = document.createElement("div");
                             date.setAttribute("class", "card");
-                            date.textContent = dayjs(dayData.dt * 1000).format("DD/MM/YYYY");
+                            date.textContent = dayName;
 
                             let image = document.createElement("img")
                             image.setAttribute("src", `https://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}.png`);
