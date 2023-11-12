@@ -45,8 +45,12 @@ function getWeather(queriedCity) {
             humidity.setAttribute("class", "card-text");
             humidity.textContent = `Humidity: ${cityInfo.main.humidity} %`;
 
+            let feelsLike = document.createElement("p");
+            humidity.setAttribute("class", "card-text");
+            humidity.textContent = `Feels Like: ${cityInfo.main.feels_like} F`;
 
-            cardBody.append(cityName, image, temp, wind, humidity);
+
+            cardBody.append(cityName, image, temp, wind, humidity, feelsLike);
             newDiv.append(cardBody);
 
             document.querySelector(".currentWeather").innerHTML = "";
