@@ -5,6 +5,8 @@ document.querySelector("#searchButton").addEventListener("click", function () {
     getWeather(city);
     let cityFive = document.querySelector("#cityButtons");
     displayFive(cityFive);
+    
+    
 });
 
 
@@ -125,7 +127,7 @@ function displayFive(queriedCity) {
                             cardBodyFive.setAttribute("class", "card-body");
                             
                             let date = document.createElement("div");
-                            date.setAttribute("class", "card");
+                            date.setAttribute("class", "date");
                             date.textContent = dayName;
 
                             let image = document.createElement("img")
@@ -149,7 +151,10 @@ function displayFive(queriedCity) {
                             
                            
                             document.querySelector(".fiveDay").append(days);
+
+                            document.querySelector('.fiveDayHeading').style.display = 'block';      
         }
 
-    })
+    });
 }
+

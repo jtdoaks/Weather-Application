@@ -79,6 +79,13 @@
     border-radius: 8px; 
 } 
 
+.fiveDayHeading{
+    text-align: center;
+    margin-top: 25px;
+    display: none;
+}
+
+
 
 /* Card styles */
 
@@ -110,7 +117,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, #ff6b35, #1a659e); /* Use your desired colors */
+    background: linear-gradient(to right, #ff6b35, #1a659e); 
 }
 
 .card-text {
@@ -118,6 +125,24 @@
     font-weight: 600; 
 }
 
+.fiveDay {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    
+    
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    font-weight: bold;
+    font-size: 1.2em;
+    
+}
 
 
 
