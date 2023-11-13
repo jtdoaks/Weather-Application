@@ -1,12 +1,15 @@
 let APIKey = "6f3fae3674ae2776180feb26321732b6";
 
 document.querySelector("#searchButton").addEventListener("click", function () {
-    let city = document.querySelector("#cityBox").value;
+    let cityInput = document.querySelector("#cityBox");
+    let city = cityInput.value;
+
     getWeather(city);
     let cityFive = document.querySelector("#cityButtons");
     displayFive(cityFive);
     
-    
+    cityInput.value = ''; 
+    cityInput.placeholder = 'Search for a City'; 
 });
 
 

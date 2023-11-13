@@ -60,10 +60,11 @@
     padding: 5px; 
     font-size: 24px; 
     border: none;
-    border-radius: 3px;
+    border-radius: 7px;
     background-color: #1a659e;
-    color: #fff;
+    color: #efefd0;
     margin: 5px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .cityButtons:hover {
@@ -132,10 +133,11 @@
     
     
 }
-
+/* five day cards */
 .card {
     display: flex;
     flex-direction: column;
+    margin: 3px;
 }
 
 .date {
@@ -145,15 +147,17 @@
 }
 
 
-
-
-
-/* Media query for responsiveness */
-/* @media (max-width: 768px) {
-    main {
-        flex-direction: column;
+@media (max-width: 768px) {
+    .fiveDay {
+        flex-direction: column; 
     }
-} */
+    .card {
+        margin-bottom: 20px; 
+    }
+}
+
+
+
 
 /* Keyframes for icon animation */
 @keyframes iconAnimation {
